@@ -19,7 +19,7 @@ namespace Lab_6
             //свойства для чтения приватных полей
             public string Name => _name;
             public string Surname => _surname;
-            public int Vote => _vote;
+            public int Votes => _vote;
             
             //конструктор
             public Response(string name, string surname)
@@ -46,7 +46,7 @@ namespace Lab_6
             }
             public void Print()
             {
-                Console.WriteLine($"{Name}\t{Surname}\t{Vote}");
+                Console.WriteLine($"{Name}\t{Surname}\t{Votes}");
             }
 
 

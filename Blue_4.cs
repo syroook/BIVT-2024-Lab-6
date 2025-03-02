@@ -34,8 +34,8 @@ namespace Lab_6
             public void PlayMatch(int result)
             {
                 if (_scores == null) return;
-                var newArray = new int[_scores.Length+1];
-                Array.Copy(_scores, newArray,_scores.Length);
+                var newArray = new int[_scores.Length + 1];
+                Array.Copy(_scores, newArray, _scores.Length);
                 newArray[_scores.Length] = result;
                 _scores = newArray;
             }
@@ -44,75 +44,76 @@ namespace Lab_6
                 Console.WriteLine($"{Name}\t {TotalScore}");
             }
 
-            public struct Group
+
+
+        }
+
+        public struct Group
+        {
+            private string _name;
+            private Team[] _team;
+            private int _count;
+
+            public string Name => _name;
+            public Team[] Teams => _team;
+
+            public Group(string name)
             {
-                private string _name;
-                private Team[] _team;
-                private int _count;
+                _name = name;
+                _team = new Team[12]; //group<=12
+                _count = 0;
+            }
 
-                public string Name => _name;
-                public Team[] Team => _team;
-
-                public Group(string name)
+            public void Add(Team team)
+            {
+                if (_team == null || _count >= 12) return;
+                _team[_count++] = team;
+            }
+            public void Add(Team[] team)
+            {
+                if (_team == null) return;
+                foreach (var player in team)
+                    Add(player);
+            }
+            public void Sort()//54321
+            {
+                if (_team == null) return;
+                for (int i = 0; i < _team.Length; i++)
                 {
-                    _name = name;
-                    _team = new Team[12]; //group<=12
-                    _count = 0;
-                }
-
-                public void Add(Team team)
-                {
-                    if (_team == null || _count >= 12) return;
-                    _team[_count++] = team;
-                }
-                public void Sort()//54321
-                {
-                    if ( _team == null ) return;
-                    for (int i = 0; i < _team.Length; i++)
+                    for (int j = 0; j < _team.Length - 1 - i; j++)
                     {
-                        for (int j = 0; j < _team.Length-1-i; j++)
+                        if (_team[j].TotalScore < _team[j + 1].TotalScore)
                         {
-                            if (_team[j].TotalScore < _team[j+1].TotalScore)
-                            {
-                                var temp = _team[j];
-                                _team[j] = _team[j+1];
-                                _team[j+1] = temp;
-                            }
+                            var temp = _team[j];
+                            _team[j] = _team[j + 1];
+                            _team[j + 1] = temp;
                         }
                     }
                 }
-                public static Group Merge(Group group1, Group group2, int size)
-                {
-                    if (size < -1) return default(Group);
-                    Group newArray = new Group("Финалисты");
-                    int i = 0;
-                    int j = 0;
-                    while (i < size/2 && j < size/2)
-                    {
-                        if (group1.Team[i].TotalScore >= group2.Team[j].TotalScore) 
-                            newArray.Add(group1.Team[i++]);
-                        else
-                            newArray.Add(group2.Team[i++]);
-                    } 
-                    while (i < size/2 ) newArray.Add(group1.Team[i++]);
-                    while (j < size/2) newArray.Add(group2.Team[j++]);
-                    return newArray;
-                }
-                public void Print()
-                {
-                    Console.WriteLine(Name);
-                    foreach(var i in _team) Console.Write(i + " ");
-                    Console.WriteLine();
-                }
-
-
-
-
-
-
             }
-
-
+            public static Group Merge(Group group1, Group group2, int size)
+            {
+                if (size < -1) return default(Group);
+                Group newArray = new Group("Финалисты");
+                int i = 0;
+                int j = 0;
+                while (i < size / 2 && j < size / 2)
+                {
+                    if (group1.Teams[i].TotalScore >= group2.Teams[j].TotalScore)
+                        newArray.Add(group1.Teams[i++]);
+                    else
+                        newArray.Add(group2.Teams[i++]);
+                }
+                while (i < size / 2) newArray.Add(group1.Teams[i++]);
+                while (j < size / 2) newArray.Add(group2.Teams[j++]);
+                return newArray;
+            }
+            public void Print()
+            {
+                Console.WriteLine(Name);
+                foreach (var i in _team) Console.Write(i + " ");
+                Console.WriteLine();
+            }
         }
     }
 }
