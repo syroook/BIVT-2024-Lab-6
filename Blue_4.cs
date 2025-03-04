@@ -114,7 +114,7 @@ namespace Lab_6
                     if (group1.Teams[i].TotalScore >= group2.Teams[j].TotalScore)
                         newArray.Add(group1.Teams[i++]);
                     else
-                        newArray.Add(group2.Teams[i++]);
+                        newArray.Add(group2.Teams[j++]);
                 }
                 while (i < size / 2) newArray.Add(group1.Teams[i++]);
                 while (j < size / 2) newArray.Add(group2.Teams[j++]);
