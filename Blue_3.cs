@@ -27,12 +27,24 @@ namespace Lab_6
                     return penaltyTimes;
                 } 
             }
-            public int TotalTime => _penaltyTimes.Sum();
+            public int TotalTime
+            {
+                get
+                {
+                    if (_penaltyTimes == null) return 0;
+                    int totalTime = 0;
+                    foreach(var x in _penaltyTimes)
+                    {
+                        totalTime += x;
+                    }
+                    return totalTime;
+                }
+            }
             public bool IsExpelled
             {
                 get
                 {
-                    if(_penaltyTimes == null) return true; //нет больше 10
+                    if(_penaltyTimes == null || _penaltyTimes.Length == 0) return true; //нет больше 10
                     foreach(int i in _penaltyTimes)
                     {
                         if (i == 10) return false;
@@ -75,10 +87,7 @@ namespace Lab_6
 
             public void Print()
             {
-                Console.WriteLine($"{Name}\t{Surname}");
-                foreach (var item in _penaltyTimes) Console.Write(item + " ");
-                Console.WriteLine();
-                Console.WriteLine($"Total time: {TotalTime} - {this.IsExpelled}");
+                Console.WriteLine($"{Name}\t{Surname}\t{TotalTime}\t{IsExpelled}");
 
             }
 
