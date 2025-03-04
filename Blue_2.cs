@@ -60,23 +60,38 @@ namespace Lab_6
             //метод
             public void Jump(int[] result) //заполнение оценками массива _marks
             {
-                int firstJump = 0, secondJump = 0;
-                if (firstJump == 0 && secondJump== 0)
+                bool isFirstJumpFilled = _marks[0, 0] != 0 || _marks[0, 1] != 0 
+                    || _marks[0, 2] != 0 || _marks[0, 3] != 0 || _marks[0, 4] != 0;
+                
+                if(!isFirstJumpFilled)
                 {
                     for (int j = 0; j < 5; j++)
-                    {
-                        _marks[0,j] = result[j];
-                        firstJump += result[j];
-                    }
+                        _marks[0, j] = result[j];
                 }
-                else if (firstJump != 0 &&  secondJump == 0)
+                //заполнен ли второй прыжок
+                else if (!(_marks[1, 0] != 0 || _marks[1, 1] != 0 || _marks[1, 2] != 0 || _marks[1, 3] != 0 || _marks[1, 4] != 0))
                 {
                     for (int j = 0; j < 5; j++)
-                    {
                         _marks[1, j] = result[j];
-                        secondJump += result[j];
-                    }
                 }
+
+                //int firstJump = 0, secondJump = 0;
+                //if (firstJump == 0 && secondJump== 0)
+                //{
+                //    for (int j = 0; j < 5; j++)
+                //    {
+                //        _marks[0,j] = result[j];
+                //        firstJump += result[j];
+                //    }
+                //}
+                //else if (firstJump != 0 &&  secondJump == 0)
+                //{
+                //    for (int j = 0; j < 5; j++)
+                //    {
+                //        _marks[1, j] = result[j];
+                //        secondJump += result[j];
+                //    }
+                //}
             }
             public static void Sort(Participant[] array) //54321
             {
