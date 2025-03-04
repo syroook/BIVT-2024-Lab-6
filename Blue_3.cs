@@ -44,7 +44,7 @@ namespace Lab_6
             {
                 get
                 {
-                    if(_penaltyTimes == null || _penaltyTimes.Length == 0) return true; //нет больше 10
+                    if(_penaltyTimes == null) return true; //нет больше 10
                     foreach(int i in _penaltyTimes)
                     {
                         if (i == 10) return false;

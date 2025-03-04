@@ -24,7 +24,19 @@ namespace Lab_6
                     return newArray;
                 }
             }
-            public int TotalScore => _scores.Sum();
+            public int TotalScore
+            {
+                get
+                {
+                    if (_scores == null) return 0;
+                    int totalScore = 0;
+                    for (int i = 0; i < _scores.Length; i++)
+                    {
+                        totalScore += _scores[i];
+                    }
+                    return totalScore;
+                }
+            }
 
             public Team(string name)
             {
@@ -77,7 +89,7 @@ namespace Lab_6
             }
             public void Sort()//54321
             {
-                if (_team == null) return;
+                if (_team == null || _team.Length == 0) return;
                 for (int i = 0; i < _team.Length; i++)
                 {
                     for (int j = 0; j < _team.Length - 1 - i; j++)

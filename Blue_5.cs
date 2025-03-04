@@ -59,7 +59,6 @@ namespace Lab_6
                         else if (sportsman.Place == 3) summaryScore += 3;
                         else if (sportsman.Place == 4) summaryScore += 2;
                         else if (sportsman.Place == 5) summaryScore += 1;
-                        else break;
                     }   
                     return summaryScore;
                 }
@@ -72,7 +71,7 @@ namespace Lab_6
                     int topPlace = 18;
                     foreach (Sportsman sportsman in _sportsmen)
                     {
-                        if(topPlace >  sportsman.Place)
+                        if(topPlace >  sportsman.Place && sportsman.Place>0)
                             topPlace = sportsman.Place;
                     }
                     return topPlace;
